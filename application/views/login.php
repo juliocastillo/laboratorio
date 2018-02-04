@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <input type="password" class="form-control" id="password" name="password" placeholder="Password">
   </div>
   <div class="form-group col-md-4">
-    <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+      <button type="submit" class="btn btn-primary"><i class="fas fa-user"></i> Iniciar sesión</button>
   </div>
 </form>
 

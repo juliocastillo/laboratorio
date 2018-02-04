@@ -1,7 +1,8 @@
 <div id="menu">
 	<div class="dropdown">
 	  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	    Procesos
+	   <i class="fas fa-bars"></i>
+	   Procesos
 	  </button>
 	  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
 	    <button class="dropdown-item" type="button">Crear solicitud</button>
