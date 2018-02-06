@@ -21,4 +21,17 @@ class Solicitud extends CI_Controller {
 		$this->load->view('footer');
 		//var_dump($usuario);exit();
 	}
+
+	public function create()
+	{
+		$data['solicitudes'] = $this->Mdl_solicitud->getSolicitudesRecientes();
+
+		$datos_header 	= array('titulo' => 'Solicitudes', );
+		$this->load->view('layout');
+		$this->load->view('menu');
+		$this->load->view('header',$datos_header);
+		$this->load->view('lab/solicitud/edit', $data); // contenido dinamico
+		$this->load->view('footer');
+		//var_dump($usuario);exit();
+	}
 }
