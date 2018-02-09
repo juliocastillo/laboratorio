@@ -30,7 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <td><?php echo $row['fecha'] ?></td>
             <td><?php echo $row['nombres'] ?></td>
             <td><?php echo $row['nombre'] ?></td>
-            <td><?php echo $row['estado'] ?></td>
+            <td><?php echo $row['estadosolicitud'] ?></td>
             <td><a href="#">Ver</td>
         </tr>
         <?php

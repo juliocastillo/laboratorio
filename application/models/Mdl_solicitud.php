@@ -13,7 +13,7 @@ class Mdl_solicitud extends CI_Model {
 				p.nombres,
 				p.apellidos,
 				c.nombre,
-				e.estado
+				e.estadosolicitud
 			FROM 
 				lab_solicitudes s
 			    INNER JOIN ctl_pacientes p ON p.id = s.id_paciente
