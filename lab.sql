@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-02-2018 a las 05:54:01
+-- Tiempo de generación: 09-02-2018 a las 06:36:03
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 7.1.11
 
@@ -50,23 +50,99 @@ INSERT INTO `ctl_clientes` (`id`, `nombre`, `id_estado`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `ctl_entregaresultados`
+--
+
+CREATE TABLE `ctl_entregaresultados` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `entregaresultado` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `ctl_entregaresultados`
+--
+
+INSERT INTO `ctl_entregaresultados` (`id`, `entregaresultado`) VALUES
+(1, 'Laboratorio'),
+(2, 'Empresa');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `ctl_estadosolicitud`
 --
 
 CREATE TABLE `ctl_estadosolicitud` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `estado` varchar(20) DEFAULT NULL
+  `estadosolicitud` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `ctl_estadosolicitud`
 --
 
-INSERT INTO `ctl_estadosolicitud` (`id`, `estado`) VALUES
+INSERT INTO `ctl_estadosolicitud` (`id`, `estadosolicitud`) VALUES
 (1, 'Digitada'),
 (2, 'En proceso'),
 (3, 'Completo'),
 (4, 'Cancelado');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ctl_financieras`
+--
+
+CREATE TABLE `ctl_financieras` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `financiera` varchar(30) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `ctl_financieras`
+--
+
+INSERT INTO `ctl_financieras` (`id`, `financiera`) VALUES
+(1, 'Banco Agricola'),
+(2, 'Fedecredito');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ctl_formaspago`
+--
+
+CREATE TABLE `ctl_formaspago` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `formapago` varchar(30) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `ctl_formaspago`
+--
+
+INSERT INTO `ctl_formaspago` (`id`, `formapago`) VALUES
+(1, 'Contado'),
+(2, 'Credito');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ctl_medicos`
+--
+
+CREATE TABLE `ctl_medicos` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `nombre` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `ctl_medicos`
+--
+
+INSERT INTO `ctl_medicos` (`id`, `nombre`) VALUES
+(1, 'DR. RAMON PEÑA'),
+(2, 'DR. MARIO MOLINA');
 
 -- --------------------------------------------------------
 
@@ -94,6 +170,26 @@ INSERT INTO `ctl_pacientes` (`id`, `nombres`, `apellidos`, `id_cliente`) VALUES
 (6, 'Carolina Noemi', 'Vasquez', 3),
 (7, 'Gracia Estela', 'Marmol', 2),
 (8, 'Hugo Santiago', 'Garcia', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ctl_pruebaslaboratorio`
+--
+
+CREATE TABLE `ctl_pruebaslaboratorio` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `codigo` varchar(5) DEFAULT NULL,
+  `pruebalaboratorio` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `ctl_pruebaslaboratorio`
+--
+
+INSERT INTO `ctl_pruebaslaboratorio` (`id`, `codigo`, `pruebalaboratorio`) VALUES
+(1, 'M0001', 'CULTIVO BACTERIOLOGICO'),
+(2, 'M0002', 'ANTIBIOGRAMA');
 
 -- --------------------------------------------------------
 
@@ -207,15 +303,45 @@ ALTER TABLE `ctl_clientes`
   ADD UNIQUE KEY `id` (`id`);
 
 --
+-- Indices de la tabla `ctl_entregaresultados`
+--
+ALTER TABLE `ctl_entregaresultados`
+  ADD UNIQUE KEY `id` (`id`);
+
+--
 -- Indices de la tabla `ctl_estadosolicitud`
 --
 ALTER TABLE `ctl_estadosolicitud`
   ADD UNIQUE KEY `id` (`id`);
 
 --
+-- Indices de la tabla `ctl_financieras`
+--
+ALTER TABLE `ctl_financieras`
+  ADD UNIQUE KEY `id` (`id`);
+
+--
+-- Indices de la tabla `ctl_formaspago`
+--
+ALTER TABLE `ctl_formaspago`
+  ADD UNIQUE KEY `id` (`id`);
+
+--
+-- Indices de la tabla `ctl_medicos`
+--
+ALTER TABLE `ctl_medicos`
+  ADD UNIQUE KEY `id` (`id`);
+
+--
 -- Indices de la tabla `ctl_pacientes`
 --
 ALTER TABLE `ctl_pacientes`
+  ADD UNIQUE KEY `id` (`id`);
+
+--
+-- Indices de la tabla `ctl_pruebaslaboratorio`
+--
+ALTER TABLE `ctl_pruebaslaboratorio`
   ADD UNIQUE KEY `id` (`id`);
 
 --
@@ -248,16 +374,46 @@ ALTER TABLE `ctl_clientes`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT de la tabla `ctl_entregaresultados`
+--
+ALTER TABLE `ctl_entregaresultados`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `ctl_estadosolicitud`
 --
 ALTER TABLE `ctl_estadosolicitud`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT de la tabla `ctl_financieras`
+--
+ALTER TABLE `ctl_financieras`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `ctl_formaspago`
+--
+ALTER TABLE `ctl_formaspago`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `ctl_medicos`
+--
+ALTER TABLE `ctl_medicos`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `ctl_pacientes`
 --
 ALTER TABLE `ctl_pacientes`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `ctl_pruebaslaboratorio`
+--
+ALTER TABLE `ctl_pruebaslaboratorio`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `lab_solicitudes`
