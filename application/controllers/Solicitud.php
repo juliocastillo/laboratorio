@@ -13,9 +13,9 @@ class Solicitud extends CI_Controller {
 	{
 		$data['solicitudes'] = $this->Mdl_solicitud->getSolicitudesRecientes();
 
-		$datos_header 	= array('titulo' => 'Solicitudes', );
+		$datos_header 	= array('location' => 'Home', );
 		$this->load->view('layout');
-		$this->load->view('menu');
+		//$this->load->view('menu');
 		$this->load->view('header',$datos_header);
 		$this->load->view('lab/solicitud/list', $data); // contenido dinamico
 		$this->load->view('footer');
@@ -25,9 +25,9 @@ class Solicitud extends CI_Controller {
 	{
 		$data['fecha'] = date("d-m-Y");
 
-		$datos_header 	= array('titulo' => 'Solicitudes', );
+		$datos_header 	= array('location' => 'Home > Crear solicitud', );
 		$this->load->view('layout');
-		$this->load->view('menu');
+		//$this->load->view('menu');
 		$this->load->view('header',$datos_header);
 		$this->load->view('lab/solicitud/edit', $data); // contenido dinamico
 		$this->load->view('footer');

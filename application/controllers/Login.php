@@ -13,10 +13,10 @@ class Login extends CI_Controller {
 	public function index() // pedir datos al usuario
 	{
 		$datos_header = array('titulo' => 'Sesión de usuario', );
-		$this->load->view('layout');
-		$this->load->view('header',$datos_header);
+		//$this->load->view('layout');
+		//$this->load->view('header',$datos_header);
 		$this->load->view('login'); // contenido dinamico
-		$this->load->view('footer');
+		//$this->load->view('footer');
 	}
 
 	public function verificar() // verificar los datos en la base de datos
@@ -26,9 +26,9 @@ class Login extends CI_Controller {
 		$password 		= $this->input->post('password');
 		$usuario = $this->Mdl_usuario->getUsuario($user, $password);
 		if (count($usuario) > 0) {
-			redirect(base_url('index.php/solicitud/list'));
+			redirect(base_url('solicitud/list'));
 		} else {
-			redirect('login/index');
+			redirect(base_url());
 		}
 
 	}
