@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-02-2018 a las 06:40:31
+-- Tiempo de generación: 16-02-2018 a las 06:49:02
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 7.1.11
 
@@ -202,6 +202,27 @@ INSERT INTO `ctl_pruebaslaboratorio` (`id`, `codigo`, `pruebalaboratorio`) VALUE
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `lab_detallesolicitud`
+--
+
+DROP TABLE IF EXISTS `lab_detallesolicitud`;
+CREATE TABLE `lab_detallesolicitud` (
+  `id` int(11) NOT NULL,
+  `id_solicitud` int(11) NOT NULL,
+  `id_pruebalaboratorio` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `lab_detallesolicitud`
+--
+
+INSERT INTO `lab_detallesolicitud` (`id`, `id_solicitud`, `id_pruebalaboratorio`) VALUES
+(1, 17, 1),
+(2, 17, 3);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `lab_solicitudes`
 --
 
@@ -370,6 +391,12 @@ ALTER TABLE `ctl_pruebaslaboratorio`
   ADD UNIQUE KEY `id` (`id`);
 
 --
+-- Indices de la tabla `lab_detallesolicitud`
+--
+ALTER TABLE `lab_detallesolicitud`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `lab_solicitudes`
 --
 ALTER TABLE `lab_solicitudes`
@@ -439,6 +466,12 @@ ALTER TABLE `ctl_pacientes`
 --
 ALTER TABLE `ctl_pruebaslaboratorio`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `lab_detallesolicitud`
+--
+ALTER TABLE `lab_detallesolicitud`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `lab_solicitudes`
