@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-02-2018 a las 06:36:03
+-- Tiempo de generación: 16-02-2018 a las 06:40:31
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 7.1.11
 
@@ -30,6 +30,7 @@ USE `lab`;
 -- Estructura de tabla para la tabla `ctl_clientes`
 --
 
+DROP TABLE IF EXISTS `ctl_clientes`;
 CREATE TABLE `ctl_clientes` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `nombre` varchar(50) DEFAULT NULL,
@@ -53,6 +54,7 @@ INSERT INTO `ctl_clientes` (`id`, `nombre`, `id_estado`) VALUES
 -- Estructura de tabla para la tabla `ctl_entregaresultados`
 --
 
+DROP TABLE IF EXISTS `ctl_entregaresultados`;
 CREATE TABLE `ctl_entregaresultados` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `entregaresultado` varchar(20) DEFAULT NULL
@@ -72,6 +74,7 @@ INSERT INTO `ctl_entregaresultados` (`id`, `entregaresultado`) VALUES
 -- Estructura de tabla para la tabla `ctl_estadosolicitud`
 --
 
+DROP TABLE IF EXISTS `ctl_estadosolicitud`;
 CREATE TABLE `ctl_estadosolicitud` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `estadosolicitud` varchar(20) DEFAULT NULL
@@ -93,6 +96,7 @@ INSERT INTO `ctl_estadosolicitud` (`id`, `estadosolicitud`) VALUES
 -- Estructura de tabla para la tabla `ctl_financieras`
 --
 
+DROP TABLE IF EXISTS `ctl_financieras`;
 CREATE TABLE `ctl_financieras` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `financiera` varchar(30) DEFAULT NULL
@@ -112,6 +116,7 @@ INSERT INTO `ctl_financieras` (`id`, `financiera`) VALUES
 -- Estructura de tabla para la tabla `ctl_formaspago`
 --
 
+DROP TABLE IF EXISTS `ctl_formaspago`;
 CREATE TABLE `ctl_formaspago` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `formapago` varchar(30) DEFAULT NULL
@@ -131,6 +136,7 @@ INSERT INTO `ctl_formaspago` (`id`, `formapago`) VALUES
 -- Estructura de tabla para la tabla `ctl_medicos`
 --
 
+DROP TABLE IF EXISTS `ctl_medicos`;
 CREATE TABLE `ctl_medicos` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `nombre` varchar(50) DEFAULT NULL
@@ -150,6 +156,7 @@ INSERT INTO `ctl_medicos` (`id`, `nombre`) VALUES
 -- Estructura de tabla para la tabla `ctl_pacientes`
 --
 
+DROP TABLE IF EXISTS `ctl_pacientes`;
 CREATE TABLE `ctl_pacientes` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `nombres` varchar(50) DEFAULT NULL,
@@ -177,6 +184,7 @@ INSERT INTO `ctl_pacientes` (`id`, `nombres`, `apellidos`, `id_cliente`) VALUES
 -- Estructura de tabla para la tabla `ctl_pruebaslaboratorio`
 --
 
+DROP TABLE IF EXISTS `ctl_pruebaslaboratorio`;
 CREATE TABLE `ctl_pruebaslaboratorio` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `codigo` varchar(5) DEFAULT NULL,
@@ -197,10 +205,17 @@ INSERT INTO `ctl_pruebaslaboratorio` (`id`, `codigo`, `pruebalaboratorio`) VALUE
 -- Estructura de tabla para la tabla `lab_solicitudes`
 --
 
+DROP TABLE IF EXISTS `lab_solicitudes`;
 CREATE TABLE `lab_solicitudes` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `fecha` date DEFAULT NULL,
+  `id_cliente` int(11) NOT NULL,
   `id_paciente` int(11) DEFAULT NULL,
+  `id_medico` int(11) NOT NULL,
+  `id_entregaresultado` int(11) NOT NULL,
+  `id_formapago` int(11) NOT NULL,
+  `id_financiera` int(11) NOT NULL,
+  `cuenta_cheque` varchar(30) NOT NULL,
   `id_estadosolicitud` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -208,16 +223,24 @@ CREATE TABLE `lab_solicitudes` (
 -- Volcado de datos para la tabla `lab_solicitudes`
 --
 
-INSERT INTO `lab_solicitudes` (`id`, `fecha`, `id_paciente`, `id_estadosolicitud`) VALUES
-(1, '2018-02-03', 1, 1),
-(2, '2018-02-03', 2, 1),
-(3, '2018-02-03', 3, 2),
-(4, '2017-12-10', 4, 2),
-(5, '2013-02-03', 5, 3),
-(6, '2015-03-04', 6, 4),
-(7, '2014-10-14', 7, 1),
-(8, '2017-02-24', 8, 4),
-(9, '2018-01-09', 5, 3);
+INSERT INTO `lab_solicitudes` (`id`, `fecha`, `id_cliente`, `id_paciente`, `id_medico`, `id_entregaresultado`, `id_formapago`, `id_financiera`, `cuenta_cheque`, `id_estadosolicitud`) VALUES
+(1, '2018-02-03', 0, 1, 0, 0, 0, 0, '', 1),
+(2, '2018-02-03', 0, 2, 0, 0, 0, 0, '', 1),
+(3, '2018-02-03', 0, 3, 0, 0, 0, 0, '', 2),
+(4, '2017-12-10', 0, 4, 0, 0, 0, 0, '', 2),
+(5, '2013-02-03', 0, 5, 0, 0, 0, 0, '', 3),
+(6, '2015-03-04', 0, 6, 0, 0, 0, 0, '', 4),
+(7, '2014-10-14', 0, 7, 0, 0, 0, 0, '', 1),
+(8, '2017-02-24', 0, 8, 0, 0, 0, 0, '', 4),
+(9, '2018-01-09', 0, 5, 0, 0, 0, 0, '', 3),
+(10, '0000-00-00', 0, 0, 0, 0, 0, 0, '', NULL),
+(11, '0000-00-00', 0, 0, 0, 0, 0, 0, '', NULL),
+(12, '0000-00-00', 2, 3, 1, 1, 0, 1, '222222', NULL),
+(13, '0000-00-00', 0, 0, 0, 0, 0, 0, '', NULL),
+(14, '0000-00-00', 0, 0, 0, 0, 0, 0, '', NULL),
+(15, '0000-00-00', 0, 0, 0, 0, 0, 0, '', NULL),
+(16, '0000-00-00', 0, 0, 0, 0, 0, 0, '', NULL),
+(17, '0000-00-00', 0, 0, 0, 0, 0, 0, '256469', NULL);
 
 -- --------------------------------------------------------
 
@@ -225,6 +248,7 @@ INSERT INTO `lab_solicitudes` (`id`, `fecha`, `id_paciente`, `id_estadosolicitud
 -- Estructura de tabla para la tabla `menus`
 --
 
+DROP TABLE IF EXISTS `menus`;
 CREATE TABLE `menus` (
   `id` int(11) NOT NULL,
   `parent` int(11) DEFAULT NULL,
@@ -263,6 +287,7 @@ INSERT INTO `menus` (`id`, `parent`, `name`, `icon`, `slug`, `number`) VALUES
 -- Estructura de tabla para la tabla `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `firstname` varchar(255) DEFAULT NULL,
@@ -419,7 +444,7 @@ ALTER TABLE `ctl_pruebaslaboratorio`
 -- AUTO_INCREMENT de la tabla `lab_solicitudes`
 --
 ALTER TABLE `lab_solicitudes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `menus`

@@ -6,8 +6,7 @@
         <small></small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-        <li class="active">Here</li>
+        <li><a href="<?=base_url($ruta_opcion_nuevo); ?>"><i class="fa fa-file"></i> <?=$label_opcion_nuevo; ?></a>
       </ol>
     </section>
 

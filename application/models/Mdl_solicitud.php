@@ -23,5 +23,37 @@ class Mdl_solicitud extends CI_Model {
 		return $this->db->query($sql)
 					->result_array();
 	}
+
+	public function insertSolicitud($args)
+	{
+		$sql = 
+		"
+			INSERT lab_solicitudes SET 
+				fecha = '$args[fecha]',
+				id_cliente = '$args[idcliente]',
+				id_paciente = '$args[idpaciente]',
+				id_medico = '$args[idmedico]',
+				id_entregaresultado = '$args[identregaresultado]',
+				id_formapago ='$args[idformapago]',
+				id_financiera ='$args[idfinanciera]',
+				cuenta_cheque = '$args[cuenta_cheque]'
+		";
+		$this->db->query($sql);
+		return $this->db->insert_id();
+	}
+
+	public function getSolicitudId($id)
+	{
+		$sql = 
+		"
+			SELECT 
+				*
+			FROM 
+				lab_solicitudes
+			WHERE id = $id
+		";
+		return $this->db->query($sql)
+					->result_array();
+	}
 	
 }

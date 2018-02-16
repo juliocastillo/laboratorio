@@ -4,9 +4,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">Solicitud</h3>
+      </div>
 
-<form>
-<table style="width: 100%">
+<?php 
+	if ($action == 'save') {
+		$ruta = "solicitud/save";
+	} else {
+		$ruta = "solicitud/update";
+	}
+?>
+
+<form method="post" action="<?=base_url($ruta);?>">
+<table id="solicitudes" class="table table-bordered table-hover">
 	<tr>
 		<td></td>
 		<td></td>
@@ -15,9 +31,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		<td rowspan="9" style="vertical-align: top;" class="bg-light">
 			<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-			  <input type="submit" class="btn btn-outline-info" value="Guardar solicitud"><br>
-			  <a class="btn btn-outline-info" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Facturar</a><br>
-			  <a class="btn btn-outline-info" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Imprimir</a>
+			  <input type="submit" class="btn btn-primary col-sm-12" value="Guardar solicitud"><br>
+			  <a class="btn btn-primary col-sm-12" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Facturar</a><br>
+			  <a class="btn btn-primary col-sm-12" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Imprimir</a>
 			</div>			
 		</td>
 	</tr>
@@ -26,7 +42,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<label class="col-sm-12 col-form-label">Fecha:</label>
 		</td>
 		<td>
-			<input type="text" value="<?=$fecha ?>" id="fecha" class="col-sm-6 form-control">
+			<input type="text" value="<?=$fecha ?>" id="fecha" name="fecha" class="col-sm-6 form-control">
 		</td>
 		<td>
 		</td>
@@ -91,7 +107,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</select>
 		</td>
 		<td><label class="col-sm-12 col-form-label">#Cuenta/cheque:</label></td>
-		<td><input type="text" name="cuenta_cheque"  class="form-control"></td>
+		<td><input type="text" name="cuenta_cheque" value="<?=$cuenta_cheque;?>" class="form-control"></td>
 	</tr>	
 
 	<tr>
@@ -110,6 +126,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 </table>
 </form>
+
+<!-- /.box-body -->
+</div>
+<!-- /.box -->
+</div>
+<!-- /.col -->
+</div>
+<!-- /.row -->
+</section>
 
 <script type="text/javascript">
 
