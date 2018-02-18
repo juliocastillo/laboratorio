@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-02-2018 a las 06:49:02
+-- Tiempo de generación: 18-02-2018 a las 20:21:11
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 7.1.11
 
@@ -71,6 +71,25 @@ INSERT INTO `ctl_entregaresultados` (`id`, `entregaresultado`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `ctl_estadodetallesolicitud`
+--
+
+DROP TABLE IF EXISTS `ctl_estadodetallesolicitud`;
+CREATE TABLE `ctl_estadodetallesolicitud` (
+  `id` int(11) NOT NULL,
+  `estado` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `ctl_estadodetallesolicitud`
+--
+
+INSERT INTO `ctl_estadodetallesolicitud` (`id`, `estado`) VALUES
+(1, 'Digitada');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `ctl_estadosolicitud`
 --
 
@@ -87,8 +106,8 @@ CREATE TABLE `ctl_estadosolicitud` (
 INSERT INTO `ctl_estadosolicitud` (`id`, `estadosolicitud`) VALUES
 (1, 'Digitada'),
 (2, 'En proceso'),
-(3, 'Completo'),
-(4, 'Cancelado');
+(3, 'Cancelada'),
+(4, 'Completa');
 
 -- --------------------------------------------------------
 
@@ -209,6 +228,8 @@ DROP TABLE IF EXISTS `lab_detallesolicitud`;
 CREATE TABLE `lab_detallesolicitud` (
   `id` int(11) NOT NULL,
   `id_solicitud` int(11) NOT NULL,
+  `id_estadodetallesolicitud` int(11) NOT NULL,
+  `fecha_solicitud` date NOT NULL,
   `id_pruebalaboratorio` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -216,9 +237,24 @@ CREATE TABLE `lab_detallesolicitud` (
 -- Volcado de datos para la tabla `lab_detallesolicitud`
 --
 
-INSERT INTO `lab_detallesolicitud` (`id`, `id_solicitud`, `id_pruebalaboratorio`) VALUES
-(1, 17, 1),
-(2, 17, 3);
+INSERT INTO `lab_detallesolicitud` (`id`, `id_solicitud`, `id_estadodetallesolicitud`, `fecha_solicitud`, `id_pruebalaboratorio`) VALUES
+(1, 17, 0, '0000-00-00', 1),
+(2, 17, 0, '0000-00-00', 3),
+(3, 34, 0, '0000-00-00', 1),
+(4, 34, 0, '0000-00-00', 2),
+(5, 35, 0, '0000-00-00', 1),
+(6, 36, 0, '0000-00-00', 2),
+(7, 38, 1, '0000-00-00', 1),
+(8, 39, 1, '0000-00-00', 2),
+(9, 41, 1, '0000-00-00', 2),
+(10, 43, 1, '0000-00-00', 1),
+(11, 44, 1, '0000-00-00', 1),
+(12, 51, 1, '0000-00-00', 1),
+(13, 52, 1, '0000-00-00', 2),
+(14, 63, 1, '0000-00-00', 1),
+(15, 65, 1, '0000-00-00', 2),
+(16, 69, 1, '0000-00-00', 2),
+(17, 70, 1, '2018-02-18', 1);
 
 -- --------------------------------------------------------
 
@@ -261,7 +297,60 @@ INSERT INTO `lab_solicitudes` (`id`, `fecha`, `id_cliente`, `id_paciente`, `id_m
 (14, '0000-00-00', 0, 0, 0, 0, 0, 0, '', NULL),
 (15, '0000-00-00', 0, 0, 0, 0, 0, 0, '', NULL),
 (16, '0000-00-00', 0, 0, 0, 0, 0, 0, '', NULL),
-(17, '0000-00-00', 0, 0, 0, 0, 0, 0, '256469', NULL);
+(17, '0000-00-00', 0, 0, 0, 0, 0, 0, '256469', NULL),
+(18, '0000-00-00', 0, 0, 0, 0, 0, 0, '', NULL),
+(19, '0000-00-00', 0, 0, 0, 0, 0, 0, '', NULL),
+(20, '0000-00-00', 0, 0, 0, 0, 0, 0, '', NULL),
+(21, '0000-00-00', 0, 0, 0, 0, 0, 0, '', NULL),
+(22, '0000-00-00', 0, 0, 0, 0, 0, 0, '', NULL),
+(23, '0000-00-00', 0, 0, 0, 0, 0, 0, '', NULL),
+(24, '0000-00-00', 0, 0, 0, 0, 0, 0, '', NULL),
+(25, '0000-00-00', 0, 0, 0, 0, 0, 0, '', NULL),
+(26, '0000-00-00', 0, 0, 0, 0, 0, 0, '', NULL),
+(27, '0000-00-00', 0, 0, 0, 0, 0, 0, '', NULL),
+(28, '0000-00-00', 0, 0, 0, 0, 0, 0, '', NULL),
+(29, '0000-00-00', 0, 0, 0, 0, 0, 0, '', NULL),
+(30, '0000-00-00', 0, 0, 0, 0, 0, 0, '', NULL),
+(31, '0000-00-00', 0, 0, 0, 0, 0, 0, '', NULL),
+(32, '0000-00-00', 0, 0, 0, 0, 0, 0, '', NULL),
+(33, '0000-00-00', 0, 0, 0, 0, 0, 0, '', NULL),
+(34, '0000-00-00', 0, 0, 0, 0, 0, 0, '', NULL),
+(35, '0000-00-00', 0, 0, 0, 0, 0, 0, '', NULL),
+(36, '0000-00-00', 0, 0, 0, 0, 0, 0, '', NULL),
+(37, '0000-00-00', 0, 0, 0, 0, 0, 0, '', NULL),
+(38, '0000-00-00', 0, 0, 0, 0, 0, 0, '', NULL),
+(39, '0000-00-00', 0, 0, 0, 0, 0, 0, '', 1),
+(40, '0000-00-00', 0, 0, 0, 0, 0, 0, '', 1),
+(41, '0000-00-00', 0, 0, 0, 0, 0, 0, '', 1),
+(42, '0000-00-00', 0, 0, 0, 0, 0, 0, '', 1),
+(43, '0000-00-00', 0, 0, 0, 0, 0, 0, '', 1),
+(44, '0000-00-00', 0, 0, 0, 0, 0, 0, '', 1),
+(45, '0000-00-00', 0, 0, 0, 0, 0, 0, '', 1),
+(46, '0000-00-00', 0, 0, 0, 0, 0, 0, '', 1),
+(47, '0000-00-00', 0, 0, 0, 0, 0, 0, '', 1),
+(48, '0000-00-00', 0, 0, 0, 0, 0, 0, '', 1),
+(49, '0000-00-00', 0, 0, 0, 0, 0, 0, '', 1),
+(50, '0000-00-00', 0, 0, 0, 0, 0, 0, '', 1),
+(51, '0000-00-00', 0, 0, 0, 0, 0, 0, '', 1),
+(52, '0000-00-00', 0, 0, 0, 0, 0, 0, '', 1),
+(53, '2018-02-18', 0, 0, 0, 0, 0, 0, '', 1),
+(54, '2018-02-16', 0, 0, 0, 0, 0, 0, '', 1),
+(55, '2018-02-18', 0, 0, 0, 0, 0, 0, '', 1),
+(56, '2018-02-16', 0, 0, 0, 0, 0, 0, '', 1),
+(57, '2018-02-18', 0, 0, 0, 0, 0, 0, '', 1),
+(58, '2018-02-18', 0, 0, 0, 0, 0, 0, '', 1),
+(59, '0000-00-00', 0, 0, 0, 0, 0, 0, '', 1),
+(60, '2018-02-18', 0, 0, 0, 0, 0, 0, '', 1),
+(61, '2018-02-18', 0, 0, 0, 0, 0, 0, '', 1),
+(62, '2018-02-18', 0, 0, 0, 0, 0, 0, '', 1),
+(63, '2018-02-18', 0, 0, 0, 0, 0, 0, '', 1),
+(64, '2018-02-18', 0, 0, 0, 0, 0, 0, '', 1),
+(65, '2018-02-18', 0, 0, 0, 0, 0, 0, '', 1),
+(66, '2018-02-18', 0, 0, 0, 0, 0, 0, '', 1),
+(67, '2018-02-18', 0, 0, 0, 0, 0, 0, '', 1),
+(68, '2018-02-18', 0, 0, 0, 0, 0, 0, '', 1),
+(69, '2018-02-18', 0, 0, 0, 0, 0, 0, '', 1),
+(70, '2018-02-18', 0, 0, 0, 0, 0, 0, '', 1);
 
 -- --------------------------------------------------------
 
@@ -355,6 +444,12 @@ ALTER TABLE `ctl_entregaresultados`
   ADD UNIQUE KEY `id` (`id`);
 
 --
+-- Indices de la tabla `ctl_estadodetallesolicitud`
+--
+ALTER TABLE `ctl_estadodetallesolicitud`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `ctl_estadosolicitud`
 --
 ALTER TABLE `ctl_estadosolicitud`
@@ -432,6 +527,12 @@ ALTER TABLE `ctl_entregaresultados`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT de la tabla `ctl_estadodetallesolicitud`
+--
+ALTER TABLE `ctl_estadodetallesolicitud`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `ctl_estadosolicitud`
 --
 ALTER TABLE `ctl_estadosolicitud`
@@ -471,13 +572,13 @@ ALTER TABLE `ctl_pruebaslaboratorio`
 -- AUTO_INCREMENT de la tabla `lab_detallesolicitud`
 --
 ALTER TABLE `lab_detallesolicitud`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `lab_solicitudes`
 --
 ALTER TABLE `lab_solicitudes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT de la tabla `menus`
