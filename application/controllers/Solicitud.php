@@ -7,6 +7,7 @@ class Solicitud extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model("Mdl_solicitud");
+		$this->load->helper(array('date_tools','url'));
 	}
 
 	public function list()
@@ -27,10 +28,8 @@ class Solicitud extends CI_Controller {
 
 	public function create()
 	{
-		$data['fecha'] = date("d-m-Y");
-
 		$data = array(
-			'fecha' 				=> date("d-m-Y"),
+			'fecha' 				=> date("Y-m-d"),
 			'idcliente' 			=> '',
 			'idpaciente' 			=> '',
 			'idmedico' 				=> '',
@@ -54,27 +53,34 @@ class Solicitud extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	public function save()
+	public function insert()
 	{
 		// capturar las variables del metodo post
 		$args = array(
-			'fecha' => $this->input->post('fecha'),
-			'idcliente' => $this->input->post('idcliente'),
-			'idpaciente' => $this->input->post('idpaciente'),
-			'idmedico' => $this->input->post('idmedico'),
+			'fecha' 			=> $this->input->post('fecha'),
+			'idcliente' 		=> $this->input->post('idcliente'),
+			'idpaciente' 		=> $this->input->post('idpaciente'),
+			'idmedico' 			=> $this->input->post('idmedico'),
 			'identregaresultado' => $this->input->post('identregaresultado'),
-			'idformapago' => $this->input->post('idformapago'),
-			'idfinanciera' => $this->input->post('idfinanciera'),
-			'cuenta_cheque' => $this->input->post('cuenta_cheque'),
+			'idformapago' 		=> $this->input->post('idformapago'),
+			'idfinanciera' 		=> $this->input->post('idfinanciera'),
+			'cuenta_cheque' 	=> $this->input->post('cuenta_cheque'),
 		);
-
 		$id = $this->Mdl_solicitud->insertSolicitud($args);
-		//var_dump($this->input->post()); exit();
+
+		// insert detalles
+		if ($this->input->post('idpruebaslaboratorio')) {
+			$args = array(
+				'idpruebaslaboratorio' 	=> $this->input->post('idpruebaslaboratorio'),
+				'id_solicitud'			=> $this->input->post('id'),
+				'fecha_solicitud'					=> $this->input->post('fecha'),
+			);
+			$result = $this->Mdl_solicitud->insertDetalleSolicitud($args, $id);
+		}
+
 
 		// crear el registro
 
-
-		$data['fecha'] = date("d-m-Y");
 		redirect(base_url()."/solicitud/edit/".$id);
 	}
 
@@ -95,21 +101,20 @@ class Solicitud extends CI_Controller {
 		$solicitud = $this->Mdl_solicitud->getSolicitudId($id);
 
 		$data = array(
-			'fecha' => $solicitud[0]['fecha'],
-			'idcliente' => $solicitud[0]['id_cliente'],
-			'idpaciente' => $solicitud[0]['id_paciente'],
-			'idmedico' => $solicitud[0]['id_medico'],
+			'fecha' 			=> $solicitud[0]['fecha'],
+			'idcliente'			=> $solicitud[0]['id_cliente'],
+			'idpaciente' 		=> $solicitud[0]['id_paciente'],
+			'idmedico' 			=> $solicitud[0]['id_medico'],
 			'identregaresultado' => $solicitud[0]['id_entregaresultado'],
-			'idformapago' => $solicitud[0]['id_formapago'],
-			'idfinanciera' => $solicitud[0]['id_financiera'],
-			'cuenta_cheque' => $solicitud[0]['cuenta_cheque'],
+			'idformapago' 		=> $solicitud[0]['id_formapago'],
+			'idfinanciera' 		=> $solicitud[0]['id_financiera'],
+			'cuenta_cheque' 	=> $solicitud[0]['cuenta_cheque'],
 		);
 
 		// enviarle datos a la vista para desplegarlos
 
 		//var_dump($solicitud);
 
-		$data['fecha'] = date("d-m-Y");
 		$data['action'] = "update";
 		$data['cuenta_cheque'] = $solicitud[0]['cuenta_cheque'];
 		$datos_header 	= array(

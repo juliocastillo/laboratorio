@@ -15,7 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <?php 
 	if ($action == 'save') {
-		$ruta = "solicitud/save";
+		$ruta = "solicitud/insert";
 	} else {
 		$ruta = "solicitud/update";
 	}
@@ -23,31 +23,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <form method="post" action="<?=base_url($ruta);?>">
 <table id="solicitudes" class="table table-bordered table-hover">
-	<tr>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-
-		<td rowspan="9" style="vertical-align: top;" class="bg-light">
-			<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-			  <input type="submit" class="btn btn-primary col-sm-12" value="Guardar solicitud"><br>
-			  <a class="btn btn-primary col-sm-12" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Facturar</a><br>
-			  <a class="btn btn-primary col-sm-12" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Imprimir</a>
-			</div>			
-		</td>
-	</tr>
+	
 	<tr>
 		<td>
 			<label class="col-sm-12 col-form-label">Fecha:</label>
 		</td>
 		<td>
-			<input type="text" value="<?=$fecha ?>" id="fecha" name="fecha" class="col-sm-6 form-control">
+			<input type="text" value="<?=con2spanish($fecha); ?>" id="fecha" name="fecha" class="col-sm-6 form-control">
 		</td>
 		<td>
 		</td>
 		<td>			
 		</td>
+<td rowspan="9" style="vertical-align: top;" class="bg-light">
+			<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+			  <input type="submit" class="btn btn-primary col-sm-12" value="Guardar solicitud"><br></br>
+			  <a class="btn btn-primary col-sm-12" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Facturar</a><br></br>
+			  <a class="btn btn-primary col-sm-12" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Imprimir</a>
+			</div>			
+		</td>
+
 	</tr>
 
 	<tr>
